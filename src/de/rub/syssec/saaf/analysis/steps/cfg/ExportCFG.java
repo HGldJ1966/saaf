@@ -36,7 +36,7 @@ import de.rub.syssec.saaf.model.application.Digest;
 import de.rub.syssec.saaf.model.application.MethodInterface;
 
 public class ExportCFG {
-	private static final int MAX_FILE_LENGTH = 250;
+	private static final int MAX_FILE_LENGTH = 200;
 	private mxGraph graph;
 	private String folder;
 	private String lastExportedFile;
@@ -51,6 +51,7 @@ public class ExportCFG {
 	}
 	
 	private String fixLength(String className, String originalMethodName, String originalParameters, String originalReturn, String extension){
+		System.out.println("CHIAMATO fixLength!!!");
 		StringBuilder retBuilder = new StringBuilder();
 		if(originalMethodName.length()+originalParameters.length()+originalReturn.length()+extension.length() >= MAX_FILE_LENGTH){
 			try {
@@ -89,6 +90,7 @@ public class ExportCFG {
 			retBuilder.append(originalReturn);
 			retBuilder.append(extension);
 		}
+		System.out.println("Lunghezza della stringa: " + retBuilder.toString().length() );
 		return retBuilder.toString();
 	}
 	
@@ -105,7 +107,8 @@ public class ExportCFG {
 		String file = folder+File.separator+packageName+File.separator+returnName;
 
 		if (fileExtension.equals(".png") ) {
-			File dir = new File(folder+File.separator+packageName);
+			File dir = null;
+			dir = new File(folder+File.separator+packageName);
 			if (!dir.exists()) {
 				dir.mkdirs();
 			}
@@ -154,6 +157,7 @@ public class ExportCFG {
 		mxPngEncodeParam param = mxPngEncodeParam.getDefaultEncodeParam(image);
 
 		try {
+			System.out.println("file length: " + file.length());
 			FileOutputStream outputStream = new FileOutputStream(new File(file));
 			
 			try	{

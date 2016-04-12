@@ -57,7 +57,7 @@ import de.rub.syssec.saaf.model.application.instruction.InstructionType;
  */
 public class DetectionLogic {
 	
-	private static final boolean DEBUG=Boolean.parseBoolean(System.getProperty("debug.slicing","false"));
+	private static final boolean DEBUG=Boolean.parseBoolean(System.getProperty("debug.slicing","true"));
 	private final ApplicationInterface app;
 	private SlicingCriterion backtrackRequest;
 	private TodoList todoList = new TodoList();
